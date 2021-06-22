@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchResults() {
         GlobalScope.launch {
-            val response = withContext(Dispatchers.IO){ Client.api.execute() }
+            val response = withContext(Dispatchers.IO){ Client.api.clone().execute() }
             if(response.isSuccessful){
                 val data = Gson().fromJson(response.body?.string(), Response::class.java)
                 launch(Dispatchers.Main) {
